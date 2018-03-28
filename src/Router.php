@@ -20,7 +20,7 @@ class Router extends RouterConstants implements RouterInterface
 {
 
     /**
-     * @var array $methods The list of allowed methods.
+     * @var array $collections The current collection or collections set.
      */
     private $collections = new SplObjectStorage();
     
