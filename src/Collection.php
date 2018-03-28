@@ -19,30 +19,4 @@ use SplObjectStorage;
  */
 class Collection extends ValidateRoutes implements CollectionInterface, ArrayAccess
 {
-    
-    /**
-     * @var SplObjectStorage $routeControllers The route controllers. 
-     */
-    private $routeControllers = new SplObjectStorage();
-    
-    /**
-     * @var array $routeNames The route names.
-     */
-    private $routeNames = [];
-    
-    /**
-     * @var array $routePaths The route paths.
-     */
-    private $routePaths = [];
-    
-    /**
-     * @var array $routePaths The route methods.
-     */
-    private $routeMethods = [];
-    
-    /**
-     * @var array $routeIds The route ids.
-     */
-    private $routeIds = [];
-    
 }
