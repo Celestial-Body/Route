@@ -12,8 +12,8 @@ declare(strict_types=1);
 namespace Genial\Route\Exception;
 
 /**
- * MethodNotAllowedException.
+ * MethodNotFoundException.
  */
-class MethodNotAllowedException extends RouteException implements ExceptionInterface
+class MethodNotFoundException extends RouteException implements ExceptionInterface
 {
 }
