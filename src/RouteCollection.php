@@ -16,6 +16,6 @@ use ArrayAccess;
 /**
  * RouteCollection.
  */
-class RouteCollection implements RouteCollectionInterface
+class RouteCollection implements RouteCollectionInterface, ArrayAccess
 {
 }
