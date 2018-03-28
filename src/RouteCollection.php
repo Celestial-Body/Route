@@ -29,7 +29,7 @@ class RouteCollection implements RouteCollectionInterface, ArrayAccess
      *
      * @param string $offset An offset to check for.
      *
-     * @return bool Returns TRUE on success or FALSE on failure.
+     * @return bool Returns TRUE if offset exists and FALSE if it does not.
      */
     public function offsetExists($offset)
     {
