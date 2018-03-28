@@ -6,7 +6,7 @@
         {
             "name": "Nicholas English",
             "email": "nenglish0820@outlook.com",
-            "homepage": "https://github.com/Nenglish7",
+            "homepage": "https://github.com/Nenglish7"
         }
     ],
     "autoload": {
@@ -15,7 +15,7 @@
         }
     },
     "require": {
-        "php": "^7.2",
+        "php": "^7.2"
     },
     "require-dev": {
         "phpunit/phpunit": "^7",
