@@ -16,7 +16,7 @@ use SplObjectStorage;
 /**
  * Router.
  */
-class Router extends RouterConstants
+class Router extends RouterConstants implements RouterInterface
 {
 
     /**
