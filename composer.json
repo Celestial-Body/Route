@@ -22,10 +22,6 @@
         "phpunit/phpunit": "^7",
         "vimeo/psalm": "^1"
     },
-    "suggest": {
-        "symfony/yaml": "Be able to construct your route configuration in yaml syntax.",
-        "symfony/serializer": "Be able to construct your route configuration in xml and json format."
-    },
     "config": {
         "preferred-install": "dist",
         "optimize-autoloader": true,
