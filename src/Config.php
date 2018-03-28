@@ -11,6 +11,9 @@ declare(strict_types=1);
 
 namespace Genial\Route;
 
+use Symfony\Component\Yaml\Yaml;
+use Symfony\Component\Yaml\Exception\ParseException;
+
 /**
  * Config.
  */
