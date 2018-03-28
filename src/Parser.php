@@ -12,8 +12,8 @@ declare(strict_types=1);
 namespace Genial\Route;
 
 /**
- * CollectionInterface.
+ * Parser.
  */
-interface CollectionInterface
+class Parser implements ParserInterface
 {
 }
