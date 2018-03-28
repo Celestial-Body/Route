@@ -24,8 +24,8 @@
         <whitelist processUncoveredFilesFromWhitelist="true">
             <directory suffix=".php">./src</directory>
             <exclude>
-                <directory suffix=".php">./vendor</directory>
-                <directory suffix=".php">./build</directory>
+                <directory>./vendor</directory>
+                <directory>./build</directory>
             </exclude>
         </whitelist>
     </filter>
