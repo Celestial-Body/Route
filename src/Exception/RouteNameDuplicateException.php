@@ -12,7 +12,7 @@ declare(strict_types=1);
 namespace Genial\Route\Exception;
 
 /**
- * RouteException.
+ * RouteNameDuplicateException.
  */
 class RouteNameDuplicateException extends RouteException implements ExceptionInterface
 {
