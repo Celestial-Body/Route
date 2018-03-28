@@ -18,5 +18,21 @@ use SplObjectStorage;
  * Collection.
  */
 class Collection implements CollectionInterface, ArrayAccess
-{ 
+{
+    
+    /**
+     * @var SplObjectStorage $routeControllers The route controllers. 
+     */
+    private $routeControllers = new SplObjectStorage();
+    
+    /**
+     * @var array $routeNames The route names.
+     */
+    private $routeNames = [];
+    
+    /**
+     * @var array $routeIds The route ids.
+     */
+    private $routeIds = [];
+    
 }
