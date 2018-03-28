@@ -12,8 +12,8 @@ declare(strict_types=1);
 namespace Genial\Route;
 
 /**
- * ConfigInterface.
+ * CollectionInterface.
  */
-interface ConfigInterface
+interface CollectionInterface
 {
 }
