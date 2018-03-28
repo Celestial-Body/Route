@@ -25,7 +25,7 @@ class RouteCollection implements RouteCollectionInterface, ArrayAccess
     private $routes = [];
     
     /**
-     * Check to see a route exists.
+     * Check to see if a route exists.
      *
      * @param string $offset An offset to check for.
      *
