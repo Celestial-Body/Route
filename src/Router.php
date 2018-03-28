@@ -62,6 +62,7 @@ class Router extends RouterConstants
                         foreach ($value as $method)
                         {
                             $method = strtoupper($method);
+                            $x = 1;
                             if (in_array($method, self::METHODS))
                             {
                                 if ($x == 1) {
