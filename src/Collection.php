@@ -17,7 +17,7 @@ use SplObjectStorage;
 /**
  * Collection.
  */
-class Collection implements CollectionInterface, ArrayAccess
+class Collection extends ValidateRoutes implements CollectionInterface, ArrayAccess
 {
     
     /**
@@ -29,6 +29,16 @@ class Collection implements CollectionInterface, ArrayAccess
      * @var array $routeNames The route names.
      */
     private $routeNames = [];
+    
+    /**
+     * @var array $routePaths The route paths.
+     */
+    private $routePaths = [];
+    
+    /**
+     * @var array $routePaths The route methods.
+     */
+    private $routeMethods = [];
     
     /**
      * @var array $routeIds The route ids.
