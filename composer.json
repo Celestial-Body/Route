@@ -1,0 +1,34 @@
+{
+    "name": "genial/route",
+    "description": "Routing made simple with genial router.",
+    "license": "BSD-3-Clause",
+    "authors": [
+        {
+            "name": "Nicholas English",
+            "email": "nenglish0820@outlook.com",
+            "homepage": "https://github.com/Nenglish7",
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Genial\\Route\\": "./src"
+        }
+    },
+    "require": {
+        "php": "^7.2",
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7",
+        "vimeo/psalm": "^1"
+    },
+    "suggest": {
+        "symfony/yaml": "Be able to construct your route configuration in yaml syntax.",
+        "symfony/serializer": "Be able to construct your route configuration in xml and json format."
+    },
+    "config": {
+        "preferred-install": "dist",
+        "optimize-autoloader": true,
+        "sort-packages": true
+    },
+    "prefer-stable": true
+}
