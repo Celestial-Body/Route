@@ -9,7 +9,7 @@ declare(strict_types=1);
  * @license <https://github.com/Genial-Framework/Route/blob/master/LICENSE> BSD 3-Clause.
  */
 
-namespace Genial\Route;
+namespace Genial\Route\Exception;
 
 use Exception;
 
