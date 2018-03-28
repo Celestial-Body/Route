@@ -12,6 +12,7 @@ declare(strict_types=1);
 namespace Genial\Route;
 
 use ArrayAccess;
+use InvalidArgumentException;
 
 /**
  * RouteCollection.
@@ -50,7 +51,65 @@ class RouteCollection extends Parser implements RouteCollectionInterface, ArrayA
     }
     
     /**
-     * Add a new route.
+     * Get the current route based on name.
+     *
+     * @param mixed $offest The offset to retrieve.
+     *
+     * @return array The route specifications or an empty array.
+     */
+    public function offsetGet($offset) {
+        if (isset($this->routes[$offset])) {
+            return $this->routes[$offset];
+        }        
+        return [];
+    }
+    
+    /**
+     * Remove a route.
+     *
+     * @param mixed $offset The offset to unset.
+     *
+     * @return void Return nothing.
+     */
+    public function offsetUnset($offset)
+    {
+        if (isset($this->routes[$offset])) {
+            $this->removeRoute($offset);
+        }
+    }
+    
+    /**
+     * Adds a new route.
+     *
+     * @param mixed $offset The offset to assign the value to.
+     * @param mixed $value The value to set.
+     *
+     * @return void Return nothing.
+     */
+    public function offsetSet($offset, $value)
+    {
+        if (is_array($value)) {
+            $routeName = $method = $location = $controller = '';
+            if (isset($value['route_name'])) {
+                $routeName = $value['route_name'];
+            }
+            if (isset($value['method'])) {
+                $method = $value['method'];
+            }
+            if (isset($value['location'])) {
+                $location = $value['location'];
+            }
+            if (isset($value['controller'])) {
+                $controller = $value['controller'];
+            }
+            $this->addRoute($routeName, $method, $location, $controller);
+        } else {
+            throw new InvalidArgumentException('We are expecting the route information in an array.');
+        }
+    }
+    
+    /**
+     * Adds a new route.
      *
      * @param string $name       The route name.
      * @param string $method     The HTTP method for this route.
@@ -91,6 +150,28 @@ class RouteCollection extends Parser implements RouteCollectionInterface, ArrayA
                 'location' => $location,
                 'controller' => $controller
             ];
+        }
+    }
+    
+    /**
+     * Remove a route.
+     *
+     * @param string $name The route name.
+     *
+     * @throws Exception\RouteNameEmptyException If the route name is empty.
+     * @throws Exception\RouteNotFoundException  If the route name was not found.
+     *
+     * @return bool Returns TRUE on success and FALSE on failure.
+     */
+    public function removeRoute(
+        string $name
+    ): bool {
+        if (trim($name) == '') {
+            throw new Exception\RouteNameEmptyException('The route name is empty.');
+        } elseif (isset($this->routes[$name])) {
+            unset($this->routes[$name]);
+        } else {
+            throw new Exception\RouteNotFoundException('The route name was not found.');
         }
     }
 
