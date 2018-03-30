@@ -31,26 +31,14 @@ class Uri implements UriInterface
      * @return bool Returns TRUE if the uri matches the given route
      *                      and returns FALSE if it does not.
      */
-    public function matches($uri, $pattern): bool
+    public function matches(string $uri, string $pattern): bool
     {
-        $uri_decode = uri_decode($uri, 'pattern');
+        $uriDecode = uriDecode($uri, 'pattern');
         if ($uri_decode == $pattern) {
             $this->setParams($uri);
             return true;
         }
         return false;
-    }
-    
-    /**
-     * Set the uri parameters.
-     *
-     * @param string $uri The request uri.
-     *
-     * @return void Return nothing.
-     */
-    private function setParams($uri): void
-    {
-        $this->params = uri_decode($uri, 'params');
     }
     
     /**
@@ -61,6 +49,18 @@ class Uri implements UriInterface
     public function getRouteParams(): array
     {
         return $this->params;
+    }
+ 
+    /**
+     * Set the uri parameters.
+     *
+     * @param string $uri The request uri.
+     *
+     * @return void Return nothing.
+     */
+    private function setParams($uri): void
+    {
+        $this->params = uriDecode($uri, 'params');
     }
     
 }
