@@ -11,18 +11,16 @@ declare(strict_types=1);
 
 namespace Genial\Route;
 
-use SplObjectStorage;
-
 /**
  * Router.
  */
-class Router extends RouterConstants implements RouterInterface
+class Router implements RouterInterface
 {
 
     /**
-     * @var array $collections The current collection or collections set.
+     * @var RouteCollection|null $collections The route collection.
      */
-    private $collections = new SplObjectStorage();
+    private $collection = null;
     
     /**
      * @var array $methods The list of allowed methods.
@@ -33,122 +31,29 @@ class Router extends RouterConstants implements RouterInterface
         'PUT',
         'DELETE',
         'HEAD',
-        'PATCH'
+        'PATCH',
+        'OPTIONS'
     ];
     
     /**
-     * @var string $location The location in which the templates reside.
+     * @var string|null $location The location in which the templates reside.
      */
-    private $location = getcwd() . DIRECTORY_SEPARATOR . 'templates';
+    private $location = \null;
     
     /**
      * Create a new router.
      *
-     * @param array $config     The router config.
-     * @param mixed $collection The route collection
+     * @param RouteCollection|null $collection The route collection.
      *
      * @return void Return nothing.
      */
-    public function __construct(array $config = [], $collection = null)
+    public function __construct($collection = null)
     {
-        if (!empty($config))
-        {
-            foreach ($config as $key => $value)
-            {
-                if ($key == 'methods')
-                {
-                    if (is_array($value))
-                    {
-                        foreach ($value as $method)
-                        {
-                            $method = strtoupper($method);
-                            $x = 1;
-                            if (in_array($method, self::METHODS))
-                            {
-                                if ($x == 1) {
-                                    $this->methods = [];
-                                }
-                                $this->methods[] = $method;
-                                $x++;
-                            }                            
-                        }
-                    }
-                }
-                if ($key == 'location')
-                {
-                    if (is_string($value))
-                    {
-                        $location = str_replace([
-                            '\\'
-                            '/',
-                            ':',
-                            ';'
-                        ], DIRECTORY_SEPARATOR, $value);
-                        $location = explode(\DIRECTORY_SEPARATOR, $location);
-                        $pathBuilder = getcwd();
-                        foreach ($location as $section)
-                        {
-                            $pathBuilder .= DIRECTORY_SEPARATOR . basename($section);
-                        }
-                        if (is_dir($pathBuilder))
-                        {
-                            $this->location = $pathBuilder;
-                        }
-                    }
-                }
-            }
+        if (!is_null($collection)) {
+            $this->collection = $collection;
+        } else {
+            throw new Exception\RouteException('Could not create a new router.');
         }
-        if (!is_null($collection))
-        {
-            $this->addCollection($collection);
-        }
-    }
-    
-    /**
-     * Add a route collection to the router.
-     *
-     * @param Collection $collection The route collection.
-     * @param bool       $discard    Discard the old collection.
-     *
-     * @return void Return nothing.
-     */
-    public function addCollection(Collection $collection, bool $discard = false): void
-    {
-        if (!$discard)
-        {
-            $this->collections = new SplObjectStorage();
-        }
-        if (!$this->hasConflicts($collection, $this->collections))
-        {
-            $this->collections->attach($collection);
-        }
-    }
-
-    /**
-     * Check to see if the collections has conflicts with the current
-     * route collections.
-     *
-     * @param Collection $collection The route collection.
-     *
-     * @return bool Return TRUE if the collection has conflicts with the current route 
-     *              collections and FALSE if it does not.
-     */
-    private function hasConflicts(Collection $collection): bool
-    {
-        foreach ($collection->getRouteNames() as $routeNames)
-        {
-            foreach ($this->collections as $object)
-            {
-                foreach ($routeNames as $routeName)
-                {
-                    if ($object->routeEquals($routeNames))
-                    {
-                        return true;
-                    }
-                }
-            }
-        }
-        return false;
     }
     
 }
