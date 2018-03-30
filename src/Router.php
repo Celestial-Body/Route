@@ -14,7 +14,7 @@ namespace Genial\Route;
 /**
  * Router.
  */
-class Router extends Uri implements RouterInterface
+class Router implements RouterInterface
 {
 
     /**
@@ -32,6 +32,7 @@ class Router extends Uri implements RouterInterface
     public function __construct(RouteCollection $collection)
     {
         $this->collection = $collection;
+        $this->uri = new Uri;
     }
     
     /**
@@ -46,8 +47,8 @@ class Router extends Uri implements RouterInterface
     {
         $routes = $this->collection->getRoutes;
         foreach ($routes as $routeName => $routeInfo) {
-            if ($this->matches($uri, $routeInfo['pattern'])) {
-                return (array) call_user_func_array(array($routeInfo['controller'], 'index'), $this->getRouteParams($uri));
+            if ($this->uri->matches($uri, $routeInfo['pattern'])) {
+                return (array) call_user_func_array(array($routeInfo['controller'], 'index'), $this->uri->getRouteParams($uri));
             }
         }
         return [];
