@@ -18,7 +18,7 @@ class Uri implements UriInterface
 {
     
     /**
-     * @param array $params The uri params.
+     * @param array $params The uri parameters.
      */
     private $params = [];
     
@@ -33,12 +33,34 @@ class Uri implements UriInterface
      */
     public function matches($uri, $pattern): bool
     {
-        $uri_decode = \uri_decode($uri);
+        $uri_decode = uri_decode($uri, 'pattern');
         if ($uri_decode == $pattern) {
             $this->setParams($uri);
             return true;
         }
         return false;
+    }
+    
+    /**
+     * Set the uri parameters.
+     *
+     * @param string $uri The request uri.
+     *
+     * @return void Return nothing.
+     */
+    private function setParams($uri): void
+    {
+        $this->params = uri_decode($uri, 'params');
+    }
+    
+    /**
+     * Get the uri parameters.
+     *
+     * @return array The uri parameters.
+     */
+    public function getRouteParams(): array
+    {
+        return $this->params;
     }
     
 }
