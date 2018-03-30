@@ -23,19 +23,6 @@ class Router extends Uri implements RouterInterface
     private $collection = null;
     
     /**
-     * @var array $methods The list of allowed methods.
-     */
-    private $methods = [
-        'POST',
-        'GET',
-        'PUT',
-        'DELETE',
-        'HEAD',
-        'PATCH',
-        'OPTIONS'
-    ];
-    
-    /**
      * Create a new router.
      *
      * @param RouteCollection $collection The route collection.
