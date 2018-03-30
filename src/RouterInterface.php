@@ -34,6 +34,6 @@ interface RouterInterface
      *
      * @return array The rendered response.
      */
-    public function response($method, $uri): array;
+    public function response(string $method, string $uri): array
     
 }
