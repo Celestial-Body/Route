@@ -20,7 +20,7 @@ class Router extends Uri implements RouterInterface
     /**
      * @var RouteCollection|null $collections The route collection.
      */
-    private $collection = \null;
+    private $collection = null;
     
     /**
      * @var array $methods The list of allowed methods.
@@ -34,11 +34,6 @@ class Router extends Uri implements RouterInterface
         'PATCH',
         'OPTIONS'
     ];
-    
-    /**
-     * @var string|null $location The location in which the templates reside.
-     */
-    private $location = \null;
     
     /**
      * Create a new router.
@@ -65,7 +60,7 @@ class Router extends Uri implements RouterInterface
         $routes = $this->collection->getRoutes;
         foreach ($routes as $routeName => $routeInfo) {
             if ($this->matches($uri, $routeInfo['pattern'])) {
-                return (array) \call_user_func_array(array($routeInfo['controller'], 'index'), $this->getRouteParams($uri));
+                return (array) call_user_func_array(array($routeInfo['controller'], 'index'), $this->getRouteParams($uri));
             }
         }
         return [];
