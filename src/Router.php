@@ -40,7 +40,7 @@ class Router extends Uri implements RouterInterface
      * @param string $method The request method.
      * @param string $uri    The request uri.
      *
-     * @return void Return nothing.
+     * @return array The rendered response.
      */
     public function response($method, $uri): array
     {
