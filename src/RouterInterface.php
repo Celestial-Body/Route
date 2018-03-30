@@ -20,21 +20,20 @@ interface RouterInterface
     /**
      * Create a new router.
      *
-     * @param array $config     The router config.
-     * @param mixed $collection The route collection
+     * @param RouteCollection $collection The route collection.
      *
      * @return void Return nothing.
      */
-    public function __construct(array $config = [], $collection = null);
+    public function __construct(RouteCollection $collection);
     
     /**
-     * Add a route collection to the router.
+     * Run the router and render a response.
      *
-     * @param Collection $collection The route collection.
-     * @param bool       $discard    Discard the old collection.
+     * @param string $method The request method.
+     * @param string $uri    The request uri.
      *
-     * @return void Return nothing.
+     * @return array The rendered response.
      */
-    public function addCollection(Collection $collection, bool $discard = false): void;
+    public function response($method, $uri): array;
     
 }
