@@ -58,7 +58,7 @@ class Uri implements UriInterface
      *
      * @return void Return nothing.
      */
-    private function setParams($uri): void
+    private function setParams(string $uri): void
     {
         $this->params = uriDecode($uri, 'params');
     }
