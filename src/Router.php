@@ -43,11 +43,11 @@ class Router implements RouterInterface
      *
      * @return array The rendered response.
      */
-    public function response($method, $uri): array
+    public function response(string $method, string $uri): array
     {
         $routes = $this->collection->getRoutes;
         foreach ($routes as $routeName => $routeInfo) {
-            if ($this->uri->matches($uri, $routeInfo['pattern'])) {
+            if ($this->uri->matches($uri, $routeInfo['pattern']) && $method == $routeInfo['method']) {
                 return (array) call_user_func_array(array($routeInfo['controller'], 'index'), $this->uri->getRouteParams($uri));
             }
         }
