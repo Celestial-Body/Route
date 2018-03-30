@@ -14,13 +14,13 @@ namespace Genial\Route;
 /**
  * Router.
  */
-class Router implements RouterInterface
+class Router extends Uri implements RouterInterface
 {
 
     /**
      * @var RouteCollection|null $collections The route collection.
      */
-    private $collection = null;
+    private $collection = \null;
     
     /**
      * @var array $methods The list of allowed methods.
@@ -43,17 +43,32 @@ class Router implements RouterInterface
     /**
      * Create a new router.
      *
-     * @param RouteCollection|null $collection The route collection.
+     * @param RouteCollection $collection The route collection.
      *
      * @return void Return nothing.
      */
-    public function __construct($collection = null)
+    public function __construct(RouteCollection $collection)
     {
-        if (!is_null($collection)) {
-            $this->collection = $collection;
-        } else {
-            throw new Exception\RouteException('Could not create a new router.');
+        $this->collection = $collection;
+    }
+    
+    /**
+     * Run the router and render a response.
+     *
+     * @param string $method The request method.
+     * @param string $uri    The request uri.
+     *
+     * @return void Return nothing.
+     */
+    public function response($method, $uri): array
+    {
+        $routes = $this->collection->getRoutes;
+        foreach ($routes as $routeName => $routeInfo) {
+            if ($this->matches($uri, $routeInfo['pattern'])) {
+                return (array) \call_user_func_array(array($routeInfo['controller'], 'index'), $this->getRouteParams($uri));
+            }
         }
+        return [];
     }
     
 }
