@@ -1,6 +1,13 @@
 {
     "name": "genial/route",
     "description": "Routing made simple with genial router.",
+    "keywords": [
+        "routing",
+        "flexible",
+        "elegant",
+        "simple",
+        "fast"
+    ],
     "license": "BSD-3-Clause",
     "authors": [
         {
