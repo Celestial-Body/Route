@@ -59,7 +59,7 @@ class Router implements RouterInterface
         }
         $uri = rawurldecode($uri);
         $routes = $this->collection->getRoutes;
-        foreach ($routes as $routeName => $routeInfo) {
+        foreach ($routes as $routeInfo) {
             if ($this->uri->matches($uri, $routeInfo['path']) && $method == $routeInfo['method']) {
                 if (isset($routeInfo['controller'])) {
                     if (is_callable($routeInfo['controller'])) { 
