@@ -46,6 +46,8 @@ class Router implements RouterInterface
      * @param string $method The request method.
      * @param string $uri    The request uri.
      *
+     * @throws Exception\RouteNotFoundException If the route was not found.
+     *
      * @return string The rendered response.
      */
     public function response(string $method, string $uri): string
@@ -60,7 +62,9 @@ class Router implements RouterInterface
                 return (string) call_user_func_array(array($routeInfo['controller'], 'index'), $this->uri->getRouteParams($uri));
             }
         }
-        return '';
+        throw new Exception\RouteNotFoundException(
+            'The route was not found.'
+        );
     }
     
 }
