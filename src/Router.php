@@ -11,11 +11,6 @@ declare(strict_types=1);
 
 namespace Genial\Route;
 
-use function strpos;
-use function substr;
-use function rawurldecode;
-use function call_user_func_array;
-
 /**
  * Router.
  */
@@ -28,6 +23,11 @@ class Router implements RouterInterface
     private $collection = null;
     
     /**
+     * @var Uri|null $collections The route collection.
+     */
+    private $uri = null;
+
+    /**
      * Create a new router.
      *
      * @param RouteCollection $collection The route collection.
@@ -37,7 +37,7 @@ class Router implements RouterInterface
     public function __construct(RouteCollection $collection)
     {
         $this->collection = $collection;
-        $this->uri = new Uri;
+        $this->uri = new Uri();
     }
     
     /**
@@ -59,12 +59,16 @@ class Router implements RouterInterface
         $routes = $this->collection->getRoutes;
         foreach ($routes as $routeName => $routeInfo) {
             if ($this->uri->matches($uri, $routeInfo['path']) && $method == $routeInfo['method']) {
-                return (string) call_user_func_array(array($routeInfo['controller'], 'index'), $this->uri->getRouteParams($uri));
+                if (isset($routeInfo['controller'])) {
+                    if (is_callable($routeInfo['controller'])) { 
+                        return (string) call_user_func_array($routeInfo['controller'], $this->uri->getRouteParams($uri));
+                    }
+                    throw new Exception\ControllerNotFoundException('Route controller was not found.');
+                }
+                throw new Exception\NoControllerSetException('Route controller was not set.');
             }
         }
-        throw new Exception\RouteNotFoundException(
-            'The route was not found.'
-        );
+        throw new Exception\RouteNotFoundException('The route was not found.');
     }
     
 }
