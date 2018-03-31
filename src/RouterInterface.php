@@ -32,8 +32,8 @@ interface RouterInterface
      * @param string $method The request method.
      * @param string $uri    The request uri.
      *
-     * @return array The rendered response.
+     * @return string The rendered response.
      */
-    public function response(string $method, string $uri): array
+    public function response(string $method, string $uri): string;
     
 }
