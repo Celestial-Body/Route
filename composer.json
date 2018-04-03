@@ -21,7 +21,11 @@
             "Genial\\Module": "./app/Modules",
             "Genial\\Engine": "./app/Engine"
         },
-        
+        "files": [
+            "./bin/version.php",
+            "./bin/functions.php",
+            "./bin/check.php"
+        ]
     },
     "require": {
         "php": "^7.2",
