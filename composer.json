@@ -48,7 +48,11 @@
         "genial-framework/escaper": "^1",
         "genial-framework/csrf": "^1",
         "genial-framework/xss-protect": "^1",
-        "genial-framework/template-engine": "^1"
+        "genial-framework/template-engine": "^1",
+        "genial-framework/environment": "^1",
+        "genial-framework/logging": "^1",
+        "genial-framework/debug": "^1",
+        "genial-framework/config": "^1"
     },
     "require-dev": {
         "phpunit/phpunit": "^7",
