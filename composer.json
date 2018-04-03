@@ -7,7 +7,7 @@
         "secure-coding",
         "skeleton-application"
     ],
-    "license": "",
+    "license": "BSD 3-Clause",
     "authors": [
         {
             "name": "Nicholas English",
@@ -17,8 +17,11 @@
     ],
     "autoload": {
         "psr-4": {
-            "Genial\\Controller\\": "./app/Controller"
-        }
+            "Genial\\Controller\\": "./app/Controllers",
+            "Genial\\Module": "./app/Modules",
+            "Genial\\Engine": "./app/Engine"
+        },
+        
     },
     "require": {
         "php": "^7.2",
@@ -28,7 +31,24 @@
         "symfony/event-dispatcher": "^4",
         "symfony/lock": "^4",
         "ramsey/uuid": "^3",
-        "moontoast/math": "^1"
+        "moontoast/math": "^1",
+        "paragonie/sodium_compat": "^1",
+        "genial-framework/responsive": "^1",
+        "genial-framework/routing": "^1",
+        "genial-framework/validator": "^1",
+        "genial-framework/session": "^1",
+        "genial-framework/authentication": "^1",
+        "genial-framework/core": "^1",
+        "genial-framework/encryption": "^1",
+        "genial-framework/form": "^1",
+        "genial-framework/dependency-injection": "^1",
+        "genial-framework/sodium_optimizer": "^1",
+        "genial-framework/key-manager": "^1",
+        "genial-framework/database": "^1",
+        "genial-framework/escaper": "^1",
+        "genial-framework/csrf": "^1",
+        "genial-framework/xss-protect": "^1",
+        "genial-framework/template-engine": "^1"
     },
     "require-dev": {
         "phpunit/phpunit": "^7",
